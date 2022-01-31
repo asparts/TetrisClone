@@ -42,6 +42,10 @@ namespace Tetriss
         };
         private readonly Image[,] imageControls;
         private GameState gameState = new GameState();
+
+        private readonly int maxDelay = 1000;
+        private readonly int minDelay = 75;
+        private readonly int delayIncrease = 25;
         public MainWindow()
         {
             InitializeComponent();
@@ -101,14 +105,25 @@ namespace Tetriss
             Block next = blockQueue.NextBlock;
             NextImage.Source = blockImages[next.Id];        
         }
-        private void DrawHoldBlock() { 
-        
+        private void DrawHeldBlock(Block heldBlock) {
+
+            if (heldBlock == null) {
+
+                HoldImage.Source = blockImages[0];
+            }
+            else
+            {
+
+                HoldImage.Source = blockImages[heldBlock.Id];
+            }
+
         }
 
         private void Draw(GameState gameState) {
             DrawGrid(gameState.GameGrid);
             DrawBlock(gameState.CurrentBlock);
             DrawNextBlock(gameState.BlockQueue);
+            DrawHeldBlock(gameState.HeldBlock);
             ScoreText.Text = "Score: " + gameState.score.ToString();
         }
         private async Task GameLoop() {
@@ -116,7 +131,8 @@ namespace Tetriss
             Draw(gameState);
             while (!gameState.GameOver) {
 
-                await Task.Delay(500);
+                int delay = Math.Max(minDelay, maxDelay - (gameState.score * delayIncrease));
+                await Task.Delay(delay);
                 gameState.MoveBlockDown();
                 Draw(gameState);
             }

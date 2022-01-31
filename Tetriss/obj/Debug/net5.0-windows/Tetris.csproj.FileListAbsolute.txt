@@ -20,3 +20,4 @@ C:\Users\Markus\source\repos\Tetris\Tetriss\obj\Debug\net5.0-windows\Tetris.dll
 C:\Users\Markus\source\repos\Tetris\Tetriss\obj\Debug\net5.0-windows\ref\Tetris.dll
 C:\Users\Markus\source\repos\Tetris\Tetriss\obj\Debug\net5.0-windows\Tetris.pdb
 C:\Users\Markus\source\repos\Tetris\Tetriss\obj\Debug\net5.0-windows\Tetris.genruntimeconfig.cache
+C:\Users\Markus\source\repos\Tetris\Tetriss\obj\Debug\net5.0-windows\Tetris_Content.g.cs
